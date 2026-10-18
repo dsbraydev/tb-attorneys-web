@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Inter } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { RevealObserver } from "@/components/ui/RevealObserver";
 import { site } from "@/content/site";
 import "./globals.css";
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  // Headings only use regular (h3–h6) and medium (h1, h2).
+  weight: ["400", "500"],
 });
 
 const inter = Inter({
@@ -39,12 +41,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         {/* Lets the scroll-reveal styles hide content only when JavaScript is available. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script
+          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
+        />
       </head>
       <body className="flex min-h-svh flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <RevealObserver />
       </body>
     </html>
   );

@@ -31,7 +31,7 @@ export function HomeStats() {
   return (
     <section className="py-[var(--space-96)]">
       <div className="container-main flex flex-col gap-20 landscape:gap-[42px]">
-        <Reveal className="grid grid-cols-[1.75fr_1fr] items-start gap-[42px] tablet:grid-cols-1 landscape:gap-7">
+        <Reveal className="grid grid-cols-[1.75fr_1fr] items-start gap-[42px] landscape:gap-7 tablet:grid-cols-1">
           <h2 className="heading-4 text-ink">
             By choosing Tim Boshoff Inc, you gain an experienced partner with a proven reputation in
             real estate industry
@@ -52,7 +52,7 @@ export function HomeStats() {
             </StatNumber>
             <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
               <Image
-                src="/images/stats-on-call.jpg"
+                src="/images/stats-on-call.webp"
                 alt="Tim Boshoff on a call"
                 fill
                 sizes="(max-width: 991px) 50vw, 33vw"
@@ -60,11 +60,15 @@ export function HomeStats() {
               />
             </div>
             <p className="body-regular">
-              Deal directly with an attorney who oversees your matter from instruction to registration.
+              Deal directly with an attorney who oversees your matter from instruction to
+              registration.
             </p>
           </Reveal>
 
-          <ImageCard src="/images/stats-2.jpg" className="col-start-2 row-start-1 tablet:col-auto tablet:row-auto" />
+          <ImageCard
+            src="/images/stats-2.webp"
+            className="col-start-2 row-start-1 tablet:col-auto tablet:row-auto"
+          />
 
           <Reveal className={`${card} col-start-3 row-start-1 tablet:col-auto tablet:row-auto`}>
             <StatNumber>Millions in Property Value Transferred</StatNumber>
@@ -75,7 +79,7 @@ export function HomeStats() {
           </Reveal>
 
           <ImageCard
-            src="/images/stats-success.jpg"
+            src="/images/stats-success.webp"
             className="col-span-2 col-start-2 row-start-2 tablet:col-auto tablet:row-auto"
           />
 

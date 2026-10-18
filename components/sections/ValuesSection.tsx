@@ -31,8 +31,8 @@ export function ValuesSection() {
             <div className="flex w-2/5 flex-col gap-6 tablet:w-4/5 phone:w-[90%]">
               <h2 className="heading-4 text-ink">The Values Behind Every Decision</h2>
               <p className="body-regular text-ink-2">
-                At Tim Boshoff Inc, our core values are more than words—they’re the foundation of how
-                we work, collaborate, and deliver results.
+                At Tim Boshoff Inc, our core values are more than words—they’re the foundation of
+                how we work, collaborate, and deliver results.
               </p>
             </div>
           </Reveal>

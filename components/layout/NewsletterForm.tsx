@@ -47,7 +47,10 @@ export function NewsletterForm() {
         </div>
       </div>
       {state.errors?.email && (
-        <p className="max-w-[385px] rounded-lg bg-danger px-4 py-2 text-center text-grey-100" role="alert">
+        <p
+          className="max-w-[385px] rounded-lg bg-danger px-4 py-2 text-center text-grey-100"
+          role="alert"
+        >
           {state.errors.email}
         </p>
       )}

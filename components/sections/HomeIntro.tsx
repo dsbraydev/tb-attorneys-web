@@ -31,7 +31,7 @@ export function HomeIntro() {
         </Reveal>
         <Reveal className="relative h-[80svh] min-h-[738px] w-full overflow-hidden rounded-3xl tablet:h-[50svh] tablet:min-h-0">
           <Image
-            src="/images/intro.jpg"
+            src="/images/intro.webp"
             alt=""
             fill
             sizes="(max-width: 1800px) 100vw, 1800px"

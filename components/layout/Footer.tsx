@@ -7,7 +7,10 @@ import { footerNav, site } from "@/content/site";
 // Webflow's footer rendered light-grey text on white (a recoloured template variable);
 // it uses the navy brand colour here so the content is readable.
 export function Footer() {
-  const socials = Object.entries(site.socials).filter(([, url]) => url) as [SocialNetwork, string][];
+  const socials = Object.entries(site.socials).filter(([, url]) => url) as [
+    SocialNetwork,
+    string,
+  ][];
   const marqueeItems = Array.from({ length: 4 });
 
   return (
@@ -17,24 +20,24 @@ export function Footer() {
           <div className="flex flex-col gap-10">
             <Link href="/" className="h-12 self-start" aria-label={`${site.name} home`}>
               <Image
-                src="/images/signature-logo.svg"
+                src="/images/logo-tb.webp"
                 alt={site.name}
-                width={158}
-                height={150}
-                className="h-12 w-auto invert"
+                width={212}
+                height={200}
+                className="h-12 w-auto"
               />
             </Link>
             <NewsletterForm />
           </div>
 
-          <div className="flex justify-end gap-[120px] pr-[75px] tablet:justify-start landscape:justify-between landscape:gap-x-16 landscape:gap-y-14 landscape:pr-5 phone:flex-wrap phone:justify-start phone:gap-x-14 phone:gap-y-[34px]">
+          <div className="flex justify-end gap-[120px] pr-[75px] landscape:justify-between landscape:gap-x-16 landscape:gap-y-14 landscape:pr-5 tablet:justify-start phone:flex-wrap phone:justify-start phone:gap-x-14 phone:gap-y-[34px]">
             {footerNav.map((column) => (
               <div key={column.title} className="flex shrink-0 flex-col gap-8 phone:gap-4">
-                <div className="body-regular uppercase text-grey-300">{column.title}</div>
+                <div className="body-regular text-grey-300 uppercase">{column.title}</div>
                 <ul className="flex flex-col gap-2.5">
                   {column.links.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href} className="capitalize text-grey-200 hover:text-white">
+                      <Link href={link.href} className="text-grey-200 capitalize hover:text-white">
                         {link.label}
                       </Link>
                     </li>
@@ -44,11 +47,14 @@ export function Footer() {
             ))}
             {(site.contact.email || site.contact.phone) && (
               <div className="flex shrink-0 flex-col gap-8 phone:gap-4">
-                <div className="body-regular uppercase text-grey-300">Contact</div>
+                <div className="body-regular text-grey-300 uppercase">Contact</div>
                 <ul className="flex flex-col gap-2.5">
                   {site.contact.phone && (
                     <li>
-                      <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} className="hover:text-white">
+                      <a
+                        href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
+                        className="hover:text-white"
+                      >
                         {site.contact.phone}
                       </a>
                     </li>
@@ -68,17 +74,27 @@ export function Footer() {
       </div>
 
       <div
-        className="mb-[72px] mt-[140px] overflow-clip phone:mb-10 phone:mt-20"
+        className="mt-[140px] mb-[72px] overflow-clip phone:mt-20 phone:mb-10"
         aria-hidden
+        data-marquee
       >
         <div className="flex w-max animate-[marquee_40s_linear_infinite] items-center gap-16 motion-reduce:animate-none">
+          {/* Decorative wordmark drawn as SVG text, so it isn't treated as low-contrast body copy. */}
           {marqueeItems.map((_, index) => (
-            <span
+            <svg
               key={index}
-              className="font-heading text-[clamp(96px,14vw,220px)] leading-none tracking-[-0.04em] whitespace-nowrap text-white/[0.06]"
+              className="h-[clamp(96px,14vw,220px)] w-auto shrink-0"
+              viewBox="0 0 1600 220"
             >
-              {site.name}
-            </span>
+              <text
+                x="0"
+                y="176"
+                fill="currentColor"
+                className="font-heading text-[200px] tracking-[-0.04em] text-white/[0.06]"
+              >
+                {site.name}
+              </text>
+            </svg>
           ))}
         </div>
       </div>

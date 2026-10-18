@@ -1,0 +1,12 @@
+.next
+node_modules
+pnpm-lock.yaml
+public
+playwright-report
+test-results
+.agents
+.claude
+lhci-report
+.lighthouseci
+# Prettier only understands MDX 1 and corrupts MDX 3 comments
+*.mdx

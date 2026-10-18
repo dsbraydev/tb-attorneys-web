@@ -10,7 +10,7 @@ export function ScheduleCard() {
   const [state, formAction, pending] = useActionState(submitEmailCapture, initialState);
 
   return (
-    <div className="sticky top-[10%] flex w-full max-w-[480px] rounded-[30px] border border-oliv bg-[rgba(172,181,140,0.34)] p-8 tablet:mx-auto tablet:max-w-[80%] landscape:max-w-none phone:p-6">
+    <div className="sticky top-[10%] flex w-full max-w-[480px] rounded-[30px] border border-oliv bg-[rgba(172,181,140,0.34)] p-8 landscape:max-w-none tablet:mx-auto tablet:max-w-[80%] phone:p-6">
       <div className="flex w-full flex-col gap-4">
         <div className="flex flex-col gap-2">
           <h2 className="body-large font-sans">Schedule A Consultation</h2>

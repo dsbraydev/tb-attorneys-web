@@ -13,7 +13,9 @@ export function FaqSection({
   page?: boolean;
 }) {
   return (
-    <section className={page ? "pb-[var(--space-80)] pt-[var(--space-hero-top)]" : "py-[var(--space-80)]"}>
+    <section
+      className={page ? "pt-[var(--space-hero-top)] pb-[var(--space-80)]" : "py-[var(--space-80)]"}
+    >
       <div className="container-main">
         <div className="grid w-full grid-cols-2 items-start gap-4 tablet:flex tablet:flex-col tablet:gap-8">
           <Reveal className="sticky top-[120px] flex flex-col items-start gap-4 tablet:static">

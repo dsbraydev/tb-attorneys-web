@@ -9,7 +9,9 @@ export function generateStaticParams() {
   return insightPosts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps<"/insight/[slug]">): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps<"/insight/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const post = getInsightPost(slug);
   if (!post) return {};

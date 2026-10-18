@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 export default function InsightPage() {
   return (
     <>
-      <section className="pb-[var(--space-80)] pt-[var(--space-hero-top)]">
+      <section className="pt-[var(--space-hero-top)] pb-[var(--space-80)]">
         <div className="container-main">
           <Reveal className="mb-[var(--title-mb-small)] flex flex-col items-start gap-4">
             <SectionLabel>Tips from Tim</SectionLabel>
-            <div className="flex w-1/2 flex-col gap-6 tablet:w-[72%] landscape:w-full landscape:gap-4">
+            <div className="flex w-1/2 flex-col gap-6 landscape:w-full landscape:gap-4 tablet:w-[72%]">
               <h1 className="heading-1">Our Stories</h1>
               <p className="body-regular text-ink-2">
                 Practical guidance on buying, selling and transferring property, from the attorney

@@ -20,7 +20,7 @@ export function ServicesTabs({
   return (
     <section className="py-[var(--space-120)]">
       <div className="container-main">
-        <div className="flex flex-col gap-[var(--space-80)] tablet:gap-[62px] landscape:gap-12 phone:gap-[42px]">
+        <div className="flex flex-col gap-[var(--space-80)] landscape:gap-12 tablet:gap-[62px] phone:gap-[42px]">
           <Reveal className="flex max-w-[720px] flex-col items-start gap-8 landscape:max-w-[80%] phone:max-w-full">
             <h2 className="heading-4 text-gold">Explore our comprehensive service offerings</h2>
             {showAllButton && <ButtonLink href="/services">Our Services</ButtonLink>}
@@ -30,7 +30,7 @@ export function ServicesTabs({
             <div
               role="tablist"
               aria-label="Services"
-              className="mr-6 flex max-w-[40%] flex-col gap-6 tablet:mr-0 tablet:max-w-full landscape:w-full landscape:gap-4 phone:mb-8 phone:gap-3"
+              className="mr-6 flex max-w-[40%] flex-col gap-6 landscape:w-full landscape:gap-4 tablet:mr-0 tablet:max-w-full phone:mb-8 phone:gap-3"
             >
               {services.map((service, index) => {
                 const selected = index === active;
@@ -43,8 +43,8 @@ export function ServicesTabs({
                     aria-selected={selected}
                     aria-controls="service-panel"
                     onClick={() => setActive(index)}
-                    className={`flex flex-col items-start rounded-[32px] py-10 pl-10 pr-20 text-left font-heading transition-all duration-[350ms] ease-out tablet:py-8 tablet:pl-8 landscape:rounded-[20px] landscape:pr-10 phone:py-7 phone:pr-8 ${
-                      selected ? "bg-gold text-grey-50" : "bg-white text-ink phone:text-ink-2"
+                    className={`flex flex-col items-start rounded-[32px] py-10 pr-20 pl-10 text-left font-heading transition-all duration-[350ms] ease-out landscape:rounded-[20px] landscape:pr-10 tablet:py-8 tablet:pl-8 phone:py-7 phone:pr-8 ${
+                      selected ? "bg-gold text-navy" : "bg-white text-ink phone:text-ink-2"
                     }`}
                   >
                     <span className="flex items-center gap-7 phone:gap-5">
@@ -61,7 +61,7 @@ export function ServicesTabs({
                       }`}
                     >
                       <span className="overflow-hidden">
-                        <span className="body-large block pt-6 font-sans tablet:pt-5 phone:pt-4">
+                        <span className="block pt-6 body-large font-sans tablet:pt-5 phone:pt-4">
                           {service.summary}
                         </span>
                       </span>
@@ -77,7 +77,7 @@ export function ServicesTabs({
               aria-labelledby={`service-tab-${active}`}
               className="relative w-1/2 tablet:w-full"
             >
-              <div className="relative h-[720px] w-full overflow-hidden rounded-[32px] tablet:h-[500px] landscape:h-[400px] landscape:rounded-[20px] phone:h-80">
+              <div className="relative h-[720px] w-full overflow-hidden rounded-[32px] landscape:h-[400px] landscape:rounded-[20px] tablet:h-[500px] phone:h-80">
                 {services.map((service, index) => (
                   <Image
                     key={service.slug}
@@ -92,7 +92,7 @@ export function ServicesTabs({
                   />
                 ))}
               </div>
-              <div className="absolute bottom-5 right-7 z-[1]">
+              <div className="absolute right-7 bottom-5 z-[1]">
                 <ButtonLink href={`/services/${current.slug}`}>View Service</ButtonLink>
               </div>
             </div>

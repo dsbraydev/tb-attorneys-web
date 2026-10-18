@@ -45,7 +45,8 @@ export async function submitContact(_prev: FormState, formData: FormData): Promi
     errors.message = "Tell us how we can help, or attach your sale agreement.";
   }
   if (agreement instanceof File && agreement.size > 0) {
-    if (agreement.size > MAX_AGREEMENT_BYTES) errors.agreement = "The file must be 10 MB or smaller.";
+    if (agreement.size > MAX_AGREEMENT_BYTES)
+      errors.agreement = "The file must be 10 MB or smaller.";
     else if (!AGREEMENT_TYPES.includes(agreement.type)) {
       errors.agreement = "Please attach a PDF, Word document or photo.";
     }

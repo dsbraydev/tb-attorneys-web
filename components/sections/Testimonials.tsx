@@ -9,7 +9,14 @@ function Stars() {
   return (
     <div className="flex items-start gap-1" aria-label="5 out of 5 stars" role="img">
       {Array.from({ length: 5 }).map((_, index) => (
-        <Image key={index} src="/icons/star.svg" alt="" width={20} height={20} className="h-5 w-5" />
+        <Image
+          key={index}
+          src="/icons/star.svg"
+          alt=""
+          width={20}
+          height={20}
+          className="h-5 w-5"
+        />
       ))}
     </div>
   );
@@ -55,7 +62,7 @@ export function Testimonials({
   const last = testimonials.length - 1;
 
   return (
-    <section className="overflow-clip pb-[200px] pt-[var(--space-120)] phone:pb-[150px]">
+    <section className="overflow-clip pt-[var(--space-120)] pb-[200px] phone:pb-[150px]">
       <div className="container-main">
         <div className="flex flex-col gap-20 tablet:gap-[60px]">
           <Reveal className="flex flex-col items-start gap-3">
@@ -83,10 +90,18 @@ export function Testimonials({
                       <figcaption className="flex items-center gap-5 phone:flex-col phone:items-start">
                         <div className="flex items-center gap-5 phone:gap-3">
                           <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full">
-                            <Image src={testimonial.avatar} alt="" fill sizes="56px" className="object-cover" />
+                            <Image
+                              src={testimonial.avatar}
+                              alt=""
+                              fill
+                              sizes="56px"
+                              className="object-cover"
+                            />
                           </div>
                           <div className="flex flex-col gap-0.5">
-                            <div className="text-lg font-medium leading-[150%]">{testimonial.name}</div>
+                            <div className="text-lg leading-[150%] font-medium">
+                              {testimonial.name}
+                            </div>
                             <div className="body-small text-grey-500">{testimonial.role}</div>
                           </div>
                           <div className="h-16 w-px bg-grey-200" />
@@ -105,7 +120,10 @@ export function Testimonials({
               </ul>
             </div>
 
-            <div className="absolute -bottom-[120px] left-0 flex items-center gap-2 phone:-bottom-20" role="tablist">
+            <div
+              className="absolute -bottom-[120px] left-0 flex items-center gap-1 phone:-bottom-20"
+              role="tablist"
+            >
               {testimonials.map((testimonial, dot) => (
                 <button
                   key={testimonial.name}
@@ -114,13 +132,25 @@ export function Testimonials({
                   aria-selected={dot === index}
                   aria-label={`Show testimonial ${dot + 1}`}
                   onClick={() => setIndex(dot)}
-                  className={`h-2.5 w-2.5 rounded-full transition-colors ${dot === index ? "bg-ink" : "bg-ink/30"}`}
-                />
+                  className="flex h-6 w-6 items-center justify-center"
+                >
+                  <span
+                    className={`h-2.5 w-2.5 rounded-full transition-colors ${dot === index ? "bg-ink" : "bg-ink/30"}`}
+                  />
+                </button>
               ))}
             </div>
-            <div className="absolute -bottom-[120px] right-0 flex gap-4 phone:-bottom-20">
-              <ArrowButton direction="prev" disabled={index === 0} onClick={() => setIndex((value) => Math.max(0, value - 1))} />
-              <ArrowButton direction="next" disabled={index === last} onClick={() => setIndex((value) => Math.min(last, value + 1))} />
+            <div className="absolute right-0 -bottom-[120px] flex gap-4 phone:-bottom-20">
+              <ArrowButton
+                direction="prev"
+                disabled={index === 0}
+                onClick={() => setIndex((value) => Math.max(0, value - 1))}
+              />
+              <ArrowButton
+                direction="next"
+                disabled={index === last}
+                onClick={() => setIndex((value) => Math.min(last, value + 1))}
+              />
             </div>
           </div>
         </div>

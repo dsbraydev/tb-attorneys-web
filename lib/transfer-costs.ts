@@ -77,7 +77,11 @@ export function estimateTransferCosts({
 }): TransferCostEstimate {
   const lines: TransferCostLine[] = [
     vatTransaction
-      ? { label: "Transfer duty", amount: 0, note: "Not payable: VAT is included in the purchase price." }
+      ? {
+          label: "Transfer duty",
+          amount: 0,
+          note: "Not payable: VAT is included in the purchase price.",
+        }
       : { label: "Transfer duty (SARS)", amount: calculateTransferDuty(price) },
   ];
 
@@ -86,7 +90,10 @@ export function estimateTransferCosts({
     lines.push(
       { label: "Conveyancing fee", amount: conveyancing },
       { label: "Disbursements", amount: schedule.disbursements },
-      { label: "VAT on fees", amount: Math.round((conveyancing + schedule.disbursements) * VAT_RATE) },
+      {
+        label: "VAT on fees",
+        amount: Math.round((conveyancing + schedule.disbursements) * VAT_RATE),
+      },
       { label: "Deeds Office fee", amount: feeFor(schedule.deedsOffice, price) },
     );
   }

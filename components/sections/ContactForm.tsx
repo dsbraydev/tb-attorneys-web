@@ -54,7 +54,11 @@ export function ContactForm() {
   const describedBy = (name: string) => (errors[name] ? `contact-${name}-error` : undefined);
 
   return (
-    <form action={formAction} className="flex flex-col gap-5 landscape:gap-4 phone:gap-3" noValidate>
+    <form
+      action={formAction}
+      className="flex flex-col gap-5 landscape:gap-4 phone:gap-3"
+      noValidate
+    >
       <div className="flex w-full items-start gap-4 landscape:flex-col phone:gap-3">
         <Field label="Name" name="name" error={errors.name}>
           <input

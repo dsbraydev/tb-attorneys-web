@@ -8,13 +8,17 @@ export function LogoStrip() {
   const row = [...logos, ...logos, ...logos];
 
   return (
-    <section className="pb-[var(--space-48)] pt-12">
+    <section className="pt-12 pb-[var(--space-48)]">
       <div className="container-main">
         <div className="flex items-center justify-between gap-[42px] tablet:flex-col tablet:text-center">
           <div className="w-1/4 tablet:w-full">
             <h2 className="heading-6">Trusted by 100+ Companies</h2>
           </div>
-          <div className="flex h-[50px] w-[70%] overflow-hidden tablet:w-full" aria-hidden>
+          <div
+            className="flex h-[50px] w-[70%] overflow-hidden tablet:w-full"
+            aria-hidden
+            data-marquee
+          >
             <div className="flex w-max animate-[marquee_30s_linear_infinite] items-center gap-9 motion-reduce:animate-none">
               {[...row, ...row].map((logo, index) => (
                 <Image

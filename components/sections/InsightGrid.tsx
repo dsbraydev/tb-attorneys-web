@@ -24,7 +24,7 @@ export function InsightGrid({ posts, categories }: { posts: InsightPost[]; categ
               type="button"
               aria-pressed={selected}
               onClick={() => setCategory(filter.value)}
-              className={`body-regular rounded px-5 py-3 uppercase transition-all duration-300 ${
+              className={`rounded px-5 py-3 body-regular uppercase transition-all duration-300 ${
                 selected
                   ? "border border-oliv bg-navy text-white"
                   : "border border-grey-400 hover:bg-[rgba(220,255,184,0.32)]"

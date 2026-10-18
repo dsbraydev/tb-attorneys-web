@@ -56,4 +56,6 @@ These fix bugs in the Webflow build (mostly caused by the template's recoloured 
 - **Services page tabs** now show Tim's four real services. The Webflow /services page still listed the template's consulting services.
 - **Removed**: cart icon ("3"), stray "Button Primary" link, "Designed by Muzammil / Muji Templates" credit, the Mujiflow help badge, template footer description and "Lexence Partners" marquee (replaced with "Tim Boshoff Inc"), and the Resources footer column (style guide, licences, changelog, instructions).
 - **CTA buttons** wrap at tablet width instead of running off-screen.
+- **Accessibility contrast fixes** (WCAG AA): the "Your Property Is Too Important…" band is navy instead of grey `#acacac` (its `#eee` heading was 1.9:1). The active service tab uses navy text on gold instead of near-white (2.3:1). Outline buttons use a translucent white border so they show on dark backgrounds.
+- **Hero video** loads after the page and only on screens wider than 767px, and not on data-saver or reduced-motion. Phones see the still poster.
 - **Insight article and service URLs** use readable slugs (e.g. `/insight/tips-from-tim-building-plans`) instead of the template's (`/insight/restructuring-for-scalable-growth`). The Webflow site was never published, so no redirects were added.

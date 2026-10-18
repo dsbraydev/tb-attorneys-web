@@ -28,13 +28,13 @@ export default function ServicesPage() {
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-[rgba(40,46,19,0.5)] mix-blend-multiply phone:bg-[rgba(172,181,140,0.85)]" />
-        <div className="container-main relative z-10 flex h-full flex-col justify-between gap-[60px] pb-[var(--space-80)] pt-[var(--space-hero-top)] landscape:gap-[42px] phone:justify-end phone:gap-8">
-          <Reveal className="w-4/5 tablet:w-[90%] landscape:w-full">
+        <div className="relative z-10 container-main flex h-full flex-col justify-between gap-[60px] pt-[var(--space-hero-top)] pb-[var(--space-80)] landscape:gap-[42px] phone:justify-end phone:gap-8">
+          <Reveal className="w-4/5 landscape:w-full tablet:w-[90%]">
             <h1 className="heading-1 text-white">
               Tailored Solutions <span className="text-gold">for property</span> Transfer
             </h1>
           </Reveal>
-          <Reveal className="ml-auto flex w-[30%] flex-col gap-8 tablet:w-[60%] landscape:ml-0 landscape:w-4/5 phone:w-auto">
+          <Reveal className="ml-auto flex w-[30%] flex-col gap-8 landscape:ml-0 landscape:w-4/5 tablet:w-[60%] phone:w-auto">
             <p className="body-large text-grey-50">
               We help sellers, buyers and estate agents navigate complexity of property sales,
               township establishment, exclusive use registration, complex contractual conditions by

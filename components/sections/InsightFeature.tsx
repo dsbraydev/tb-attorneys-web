@@ -12,7 +12,7 @@ export function InsightFeature() {
         <div className="grid grid-cols-2 items-start gap-8 tablet:flex tablet:flex-col tablet:gap-7">
           <Reveal className="sticky top-[120px] flex flex-col items-start gap-6 tablet:static">
             <SectionLabel>Tips from Tim</SectionLabel>
-            <h2 className="heading-4 max-w-[75%] phone:max-w-full">
+            <h2 className="max-w-[75%] heading-4 phone:max-w-full">
               Explore our library of property-related legal topics
             </h2>
             <ButtonLink href="/insight">All Stories</ButtonLink>

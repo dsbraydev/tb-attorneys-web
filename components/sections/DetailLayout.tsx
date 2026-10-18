@@ -22,7 +22,7 @@ export function DetailLayout({
 }) {
   return (
     <>
-      <section className="pb-[var(--space-80)] pt-[var(--space-hero-top)]">
+      <section className="pt-[var(--space-hero-top)] pb-[var(--space-80)]">
         <div className="container-main">
           <div className="flex flex-col items-center gap-[var(--space-80)] text-center phone:gap-12">
             <Reveal className="flex flex-col items-center gap-6 landscape:gap-5 phone:gap-4">

@@ -19,7 +19,7 @@ export const services: Service[] = [
     summary:
       "Full legal management of residential property transfers, including compliance, drafting, and registration at the Deeds Office.",
     icon: "transfer",
-    image: "/images/service-strategy.jpg",
+    image: "/images/service-strategy.webp",
   },
   {
     slug: "sale-agreement-review",
@@ -35,7 +35,7 @@ export const services: Service[] = [
     summary:
       "Specialist handling of Township establishment, HOA requirements, levy clearances, exclusive use areas, state compliance requirements, VAT property transactions.",
     icon: "sectional",
-    image: "/images/service-tab-3.jpg",
+    image: "/images/service-tab-3.webp",
   },
   {
     slug: "property-transfer-process-optimization",

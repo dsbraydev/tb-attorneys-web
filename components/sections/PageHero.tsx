@@ -12,15 +12,17 @@ export function PageHero({
   actions: ReactNode;
 }) {
   return (
-    <section className="pb-[var(--space-80)] pt-[var(--space-hero-top)]">
+    <section className="pt-[var(--space-hero-top)] pb-[var(--space-80)]">
       <div className="container-main">
         <div className="flex flex-col gap-[60px] landscape:gap-[42px] phone:gap-8">
-          <Reveal className="flex w-4/5 flex-col tablet:w-[90%] landscape:w-full">
+          <Reveal className="flex w-4/5 flex-col landscape:w-full tablet:w-[90%]">
             <h1 className="heading-1 text-ink">{heading}</h1>
           </Reveal>
-          <Reveal className="ml-auto flex w-[30%] flex-col gap-8 tablet:w-[60%] landscape:w-4/5 phone:w-full">
+          <Reveal className="ml-auto flex w-[30%] flex-col gap-8 landscape:w-4/5 tablet:w-[60%] phone:w-full">
             <div className="body-regular text-ink-2">{intro}</div>
-            <div className="flex gap-6 phone:flex-col phone:items-stretch">{actions}</div>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 phone:flex-col phone:items-stretch">
+              {actions}
+            </div>
           </Reveal>
         </div>
       </div>

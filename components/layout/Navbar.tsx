@@ -32,7 +32,10 @@ export function Navbar() {
   const transparent = overlay && !pastHero;
   const [open, setOpen] = useState(false);
 
-  const socials = Object.entries(site.socials).filter(([, url]) => url) as [SocialNetwork, string][];
+  const socials = Object.entries(site.socials).filter(([, url]) => url) as [
+    SocialNetwork,
+    string,
+  ][];
 
   return (
     <header
@@ -42,13 +45,17 @@ export function Navbar() {
     >
       <div className="container-main">
         <div className="flex items-center justify-between gap-4 border-b-[0.5px] border-[rgba(183,179,162,0.4)] py-4">
-          <Link href="/" className="flex w-[100px] items-center rounded-lg" aria-label={`${site.name} home`}>
+          <Link
+            href="/"
+            className="flex w-[100px] items-center rounded-lg"
+            aria-label={`${site.name} home`}
+          >
             <Image
-              src="/images/signature-logo.svg"
+              src="/images/logo-tb.webp"
               alt={site.name}
-              width={158}
-              height={150}
-              className="h-[50px] w-auto max-w-[130px] rounded-[10px] object-contain invert"
+              width={212}
+              height={200}
+              className="h-[50px] w-auto"
               loading="eager"
             />
           </Link>
@@ -60,7 +67,7 @@ export function Navbar() {
               if ((event.target as HTMLElement).closest("a")) setOpen(false);
             }}
           >
-            <div className="flex items-center justify-center gap-4 tablet:mt-2.5 tablet:flex-col tablet:items-start tablet:gap-2.5 tablet:rounded-2xl tablet:border tablet:border-oliv tablet:bg-navy-deep tablet:px-5 tablet:py-6 landscape:gap-2">
+            <div className="flex items-center justify-center gap-4 landscape:gap-2 tablet:mt-2.5 tablet:flex-col tablet:items-start tablet:gap-2.5 tablet:rounded-2xl tablet:border tablet:border-oliv tablet:bg-navy-deep tablet:px-5 tablet:py-6">
               {mainNav.map((link) => {
                 const current = isCurrent(pathname, link.href);
                 return (
@@ -68,7 +75,7 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     aria-current={current ? "page" : undefined}
-                    className={`cursor-pointer px-1.5 py-1 leading-[140%] text-grey-50 tablet:px-3 tablet:py-2 landscape:px-4 ${
+                    className={`cursor-pointer px-1.5 py-1 leading-[140%] text-grey-50 landscape:px-4 tablet:px-3 tablet:py-2 ${
                       current
                         ? "font-medium text-white underline decoration-[0.25px] underline-offset-[6px]"
                         : ""

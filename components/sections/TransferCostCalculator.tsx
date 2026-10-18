@@ -68,12 +68,13 @@ export function TransferCostCalculator() {
           <div className="h-0 w-full border-b border-[rgba(183,179,162,0.8)]" />
           <dl className="flex flex-col gap-4">
             {estimate.lines.map((line) => (
-              <div key={line.label} className="flex flex-col gap-1">
-                <div className="flex items-center justify-between gap-4">
-                  <dt className="body-regular text-ink-2">{line.label}</dt>
-                  <dd className="body-regular font-medium text-ink">{formatRand(line.amount)}</dd>
-                </div>
-                {line.note && <p className="body-small text-grey-500">{line.note}</p>}
+              <div
+                key={line.label}
+                className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1"
+              >
+                <dt className="body-regular text-ink-2">{line.label}</dt>
+                <dd className="body-regular font-medium text-ink">{formatRand(line.amount)}</dd>
+                {line.note && <dd className="col-span-2 body-small text-grey-500">{line.note}</dd>}
               </div>
             ))}
           </dl>

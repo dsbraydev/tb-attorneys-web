@@ -9,7 +9,12 @@ export const metadata: Metadata = {
   description: "Send your sale agreement for review or book a free 15 minute consultation.",
 };
 
-type InfoCard = { icon: string; title: string; text: string; link: { href: string; label: string } };
+type InfoCard = {
+  icon: string;
+  title: string;
+  text: string;
+  link: { href: string; label: string };
+};
 
 export default function ContactPage() {
   const { phone, email, mapUrl } = site.contact;
@@ -59,7 +64,7 @@ export default function ContactPage() {
               {cards.map((card) => (
                 <div
                   key={card.title}
-                  className="flex min-h-[400px] w-full min-w-[354px] max-w-[450px] flex-col justify-between overflow-hidden rounded-2xl border border-oliv/[0.12] bg-oliv/[0.08] px-6 py-8 tablet:min-w-[250px] tablet:max-w-[345px] landscape:min-h-[320px] landscape:min-w-0 landscape:max-w-none"
+                  className="flex min-h-[400px] w-full max-w-[450px] min-w-[354px] flex-col justify-between overflow-hidden rounded-2xl border border-oliv/[0.12] bg-oliv/[0.08] px-6 py-8 landscape:min-h-[320px] landscape:max-w-none landscape:min-w-0 tablet:max-w-[345px] tablet:min-w-[250px]"
                 >
                   <Image src={card.icon} alt="" width={48} height={48} className="h-12 w-12" />
                   <div className="flex flex-col gap-4">

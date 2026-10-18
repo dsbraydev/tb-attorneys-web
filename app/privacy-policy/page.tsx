@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <section className="pb-[var(--space-80)] pt-[var(--space-hero-top)]">
+    <section className="pt-[var(--space-hero-top)] pb-[var(--space-80)]">
       <div className="container-main">
         <div className="grid grid-cols-2 gap-8 landscape:grid-cols-1">
           <div className="flex w-full max-w-[550px] flex-col items-start gap-6">
