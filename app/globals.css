@@ -1,26 +1,332 @@
 @import "tailwindcss";
 
+/* Webflow is desktop-first: these variants apply at and below each Webflow breakpoint. */
+@custom-variant tablet (@media (width <= 991px));
+@custom-variant landscape (@media (width <= 767px));
+@custom-variant phone (@media (width <= 479px));
+
+@theme {
+  --font-heading: var(--font-be-vietnam-pro), sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
+
+  --color-page: #f2f2f2;
+  --color-navy: #0e1a2b;
+  --color-navy-deep: #0c1727;
+  --color-gold: #c9a24d;
+  --color-ink: #272727;
+  --color-ink-2: #444444;
+  --color-grey-500: #606060;
+  --color-grey-400: #828282;
+  --color-grey-300: #acacac;
+  --color-grey-200: #e3e3e3;
+  --color-grey-100: #eeeeee;
+  --color-grey-50: #f9f9f9;
+  --color-cream: #faf8f4;
+  --color-cream-border: #f2f0ec;
+  --color-oliv: #acb58c;
+  --color-grey-oliv: #d9dbd2;
+  --color-light-brown: #b7b3a2;
+  --color-forest: #102d23;
+  --color-danger: #fa4149;
+
+  --container-main: 1800px;
+}
+
+/* Type and spacing scale, mirrored from the Webflow variables. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --site-padding: 32px;
+
+  --space-120: 120px;
+  --space-96: 96px;
+  --space-80: 80px;
+  --space-64: 64px;
+  --space-48: 48px;
+  --space-hero-top: 168px;
+  --title-mb-small: 64px;
+
+  --h1-size: 120px;
+  --h1-lh: 112%;
+  --h1-ls: -5.5px;
+  --h2-size: 96px;
+  --h2-lh: 120%;
+  --h2-ls: -4px;
+  --h3-size: 64px;
+  --h3-lh: 130%;
+  --h3-ls: -3px;
+  --h4-size: 48px;
+  --h4-lh: 130%;
+  --h4-ls: -2.75px;
+  --h5-size: 40px;
+  --h5-lh: 150%;
+  --h5-ls: -3px;
+  --h6-size: 32px;
+  --h6-lh: 110%;
+  --h6-ls: -2px;
+
+  --body-large-size: 20px;
+  --body-regular-size: 16px;
+  --body-small-size: 14px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (width <= 991px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --site-padding: 24px;
+    --space-120: 80px;
+    --space-96: 72px;
+    --space-80: 64px;
+    --title-mb-small: 48px;
+    --h1-size: 96px;
+    --h1-lh: 116%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (width <= 767px) {
+  :root {
+    --space-120: 64px;
+    --space-96: 64px;
+    --space-80: 56px;
+    --space-hero-top: 120px;
+    --title-mb-small: 32px;
+
+    --h1-size: 48px;
+    --h1-ls: -4px;
+    --h2-size: 48px;
+    --h2-lh: 130%;
+    --h2-ls: -3px;
+    --h3-size: 30px;
+    --h4-size: 28px;
+    --h4-lh: 140%;
+    --h4-ls: -2px;
+    --h5-size: 28px;
+    --h5-ls: -2px;
+    --h6-size: 24px;
+
+    --body-large-size: 16px;
+    --body-regular-size: 14px;
+    --body-small-size: 12px;
+  }
+}
+
+@media (width <= 479px) {
+  :root {
+    --site-padding: 16px;
+    --space-120: 48px;
+    --space-96: 48px;
+    --space-80: 48px;
+    --space-64: 48px;
+    --title-mb-small: 24px;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--body-regular-size);
+    line-height: 140%;
+    letter-spacing: -0.75px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+@utility container-main {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--container-main);
+  margin-inline: auto;
+  padding-inline: var(--site-padding);
+}
+
+@utility heading-1 {
+  font-family: var(--font-heading);
+  font-size: var(--h1-size);
+  line-height: var(--h1-lh);
+  letter-spacing: var(--h1-ls);
+  font-weight: 500;
+}
+
+@utility heading-2 {
+  font-family: var(--font-heading);
+  font-size: var(--h2-size);
+  line-height: var(--h2-lh);
+  letter-spacing: var(--h2-ls);
+  font-weight: 500;
+}
+
+@utility heading-3 {
+  font-family: var(--font-heading);
+  font-size: var(--h3-size);
+  line-height: var(--h3-lh);
+  letter-spacing: var(--h3-ls);
+  font-weight: 400;
+}
+
+@utility heading-4 {
+  font-family: var(--font-heading);
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  letter-spacing: var(--h4-ls);
+  font-weight: 400;
+}
+
+@utility heading-5 {
+  font-family: var(--font-heading);
+  font-size: var(--h5-size);
+  line-height: var(--h5-lh);
+  letter-spacing: var(--h5-ls);
+  font-weight: 400;
+}
+
+@utility heading-6 {
+  font-family: var(--font-heading);
+  font-size: var(--h6-size);
+  line-height: var(--h6-lh);
+  letter-spacing: var(--h6-ls);
+  font-weight: 400;
+}
+
+@utility body-large {
+  font-family: var(--font-sans);
+  font-size: var(--body-large-size);
+  line-height: 140%;
+  letter-spacing: -1px;
+}
+
+@utility body-regular {
+  font-family: var(--font-sans);
+  font-size: var(--body-regular-size);
+  line-height: 140%;
+  letter-spacing: -0.75px;
+}
+
+@utility body-small {
+  font-family: var(--font-sans);
+  font-size: var(--body-small-size);
+  line-height: 150%;
+  letter-spacing: -0.5px;
+}
+
+@utility label-small {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+/* Rich text for Insight articles, services and legal pages (MDX output). */
+@utility prose-site {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  & h2,
+  & h3 {
+    font-size: var(--h6-size);
+    line-height: var(--h6-lh);
+    letter-spacing: var(--h6-ls);
+    color: var(--color-ink);
+  }
+
+  & p,
+  & li {
+    color: var(--color-ink-2);
+  }
+
+  & ul,
+  & ol {
+    padding-left: 40px;
+  }
+
+  & ul {
+    list-style: disc;
+  }
+
+  & ol {
+    list-style: decimal;
+  }
+
+  & li + li {
+    margin-top: 4px;
+  }
+
+  & a {
+    text-decoration: underline;
+  }
+
+  & strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  & blockquote {
+    padding: 10px 20px;
+    border-left: 2px solid var(--color-ink);
+    border-radius: 2px;
+    color: var(--color-grey-500);
+    font-size: 20px;
+    line-height: 32px;
+    font-style: italic;
+  }
+}
+
+/* Scroll reveal, replacing Webflow's fade-in interactions. Only hides content once JS is running. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.js .reveal[data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wipe {
+  to {
+    transform: scaleX(0);
+  }
 }
