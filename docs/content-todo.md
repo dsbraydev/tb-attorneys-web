@@ -12,8 +12,8 @@ The Webflow site was built on the "Lexence Partners" template, and much of the c
   - Note: Webflow's `/pricing` page never had a calculator. It was the template's "Our Plans" ($99/$299/$499 a month) page.
 - [ ] **Insight articles**: all four Webflow articles had the same template body (a SaaS case study). The MDX files in `content/insight/` are stubs that need Tim's articles.
 - [ ] **Service pages**: the Webflow service detail pages were template marketing copy. The stubs in `content/services/` need real descriptions.
-- [ ] **Production domain**: set `NEXT_PUBLIC_SITE_URL` (used for metadata, sitemap and robots).
-- [ ] **Forms**: the contact form, newsletter and "Schedule a consultation" cards only log submissions on the server. Choose a delivery provider (e.g. Resend) and implement `deliver` in `lib/forms.ts`.
+- [ ] **Production domain**: set `NEXT_PUBLIC_SITE_URL` (used for metadata, sitemap and robots). A Vercel production build fails without it; previews use their own Vercel URL.
+- [ ] **Forms**: there is no delivery provider yet, so the contact form, newsletter and "Schedule a consultation" cards show visitors an error asking them to make contact directly (nothing is sent or logged with personal details). Choose a provider (e.g. Resend) and implement `deliver` in `lib/forms.ts`. `FORMS_DRY_RUN=true` simulates success for local testing.
 - [ ] **Hero video licence**: the Table Mountain clip is from Artlist and the Webflow copy shows an **"Artlist" watermark**, which suggests it's the preview file. Download the licensed, unwatermarked file and replace `public/video/hero.{mp4,webm}`.
 
 ## Template copy still visible (replace or approve)

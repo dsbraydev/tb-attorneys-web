@@ -75,6 +75,7 @@ describe("estimateTransferCosts", () => {
 
 describe("formatRand", () => {
   it("formats whole rand", () => {
-    expect(formatRand(33_786).replace(/\s/g, " ")).toBe("R 33 786");
+    // Spacing between "R" and the digit groups varies by ICU version, so compare without it.
+    expect(formatRand(33_786).replace(/\s/g, "")).toBe("R33786");
   });
 });

@@ -46,6 +46,14 @@ export function NewsletterForm() {
           </button>
         </div>
       </div>
+      {state.status === "error" && state.message && (
+        <p
+          className="max-w-[385px] rounded-lg bg-danger px-4 py-2 text-center text-grey-100"
+          role="alert"
+        >
+          {state.message}
+        </p>
+      )}
       {state.errors?.email && (
         <p
           className="max-w-[385px] rounded-lg bg-danger px-4 py-2 text-center text-grey-100"

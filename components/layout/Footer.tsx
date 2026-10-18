@@ -1,16 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
-import { SocialIcon, type SocialNetwork } from "@/components/ui/icons";
+import { CurrentYear } from "@/components/ui/CurrentYear";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { footerNav, site } from "@/content/site";
 
 // Webflow's footer rendered light-grey text on white (a recoloured template variable);
 // it uses the navy brand colour here so the content is readable.
 export function Footer() {
-  const socials = Object.entries(site.socials).filter(([, url]) => url) as [
-    SocialNetwork,
-    string,
-  ][];
   const marqueeItems = Array.from({ length: 4 });
 
   return (
@@ -103,22 +100,10 @@ export function Footer() {
         <div className="flex flex-col gap-8 border-t-[0.5px] border-[rgba(217,219,210,0.6)] py-8 phone:pb-0">
           <div className="flex items-center justify-between gap-10 tablet:flex-wrap phone:flex-col phone:items-start">
             <p className="body-regular">
-              © {new Date().getFullYear()} {site.name}. All rights reserved.
+              © <CurrentYear buildYear={new Date().getFullYear()} /> {site.name}. All rights
+              reserved.
             </p>
-            {socials.length > 0 && (
-              <div className="flex items-center gap-2">
-                {socials.map(([network, url]) => (
-                  <a
-                    key={network}
-                    href={url}
-                    aria-label={network}
-                    className="flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(201,241,161,0.08)] text-grey-50 transition-all duration-300 ease-out hover:bg-[rgba(201,241,161,0.16)] hover:text-white"
-                  >
-                    <SocialIcon network={network} />
-                  </a>
-                ))}
-              </div>
-            )}
+            <SocialLinks />
             <div className="flex items-center gap-4 phone:flex-col phone:items-start">
               <Link href="/privacy-policy" className="hover:text-white">
                 Privacy Policy

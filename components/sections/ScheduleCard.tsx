@@ -39,6 +39,11 @@ export function ScheduleCard() {
               aria-invalid={state.errors?.email ? true : undefined}
               className="h-14 w-full rounded-lg border border-oliv/[0.32] bg-page p-4 text-ink outline-none placeholder:font-light focus:border-gold"
             />
+            {state.status === "error" && state.message && (
+              <p className="rounded-2xl bg-[rgba(255,211,213,0.49)] p-3 text-danger" role="alert">
+                {state.message}
+              </p>
+            )}
             {state.errors?.email && (
               <p className="rounded-2xl bg-[rgba(255,211,213,0.49)] p-3 text-danger" role="alert">
                 {state.errors.email}

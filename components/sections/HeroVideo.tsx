@@ -22,18 +22,28 @@ export function HeroVideo() {
       connection?.effectiveType === "slow-2g";
     if (skip) return;
 
-    for (const [src, type] of [
+    const sources = [
       ["/video/hero.webm", "video/webm"],
       ["/video/hero.mp4", "video/mp4"],
-    ]) {
+    ].map(([src, type]) => {
       const source = document.createElement("source");
       source.src = src;
       source.type = type;
-      video.appendChild(source);
-    }
+      return video.appendChild(source);
+    });
+    const show = () => video.classList.remove("opacity-0");
+    video.addEventListener("canplay", show, { once: true });
     video.load();
-    video.addEventListener("canplay", () => video.classList.remove("opacity-0"), { once: true });
     video.play().catch(() => {});
+
+    // Undo everything so a remount (or StrictMode's double effect) doesn't add duplicate sources.
+    return () => {
+      video.removeEventListener("canplay", show);
+      video.pause();
+      sources.forEach((source) => source.remove());
+      video.classList.add("opacity-0");
+      video.load();
+    };
   }, []);
 
   return (

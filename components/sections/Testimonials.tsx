@@ -84,7 +84,7 @@ export function Testimonials({
                     aria-hidden={slide !== index}
                     className="mr-8 w-full max-w-[656px] shrink-0 rounded-2xl bg-grey-50 p-8"
                   >
-                    <figure className="flex h-[260px] flex-col items-start justify-between gap-6 phone:h-[370px]">
+                    <figure className="flex h-full min-h-[260px] flex-col items-start justify-between gap-6 phone:min-h-[370px]">
                       <Stars />
                       <blockquote className="body-large">“{testimonial.quote}”</blockquote>
                       <figcaption className="flex items-center gap-5 phone:flex-col phone:items-start">
@@ -122,14 +122,14 @@ export function Testimonials({
 
             <div
               className="absolute -bottom-[120px] left-0 flex items-center gap-1 phone:-bottom-20"
-              role="tablist"
+              role="group"
+              aria-label="Choose a testimonial"
             >
               {testimonials.map((testimonial, dot) => (
                 <button
                   key={testimonial.name}
                   type="button"
-                  role="tab"
-                  aria-selected={dot === index}
+                  aria-current={dot === index ? "true" : undefined}
                   aria-label={`Show testimonial ${dot + 1}`}
                   onClick={() => setIndex(dot)}
                   className="flex h-6 w-6 items-center justify-center"

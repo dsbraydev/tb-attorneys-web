@@ -12,10 +12,12 @@ export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
       {faqs.map((faq, index) => {
         const expanded = open === index;
         const panelId = `${baseId}-panel-${index}`;
+        const buttonId = `${baseId}-button-${index}`;
         return (
           <div key={faq.question} className="overflow-hidden rounded-2xl bg-grey-50 p-6">
             <h3>
               <button
+                id={buttonId}
                 type="button"
                 aria-expanded={expanded}
                 aria-controls={panelId}
@@ -39,6 +41,7 @@ export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
             <div
               id={panelId}
               role="region"
+              aria-labelledby={buttonId}
               className={`grid transition-[grid-template-rows] duration-300 ease-out ${
                 expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
               }`}

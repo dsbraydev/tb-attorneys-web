@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 import { ButtonLink } from "@/components/ui/Button";
-import { CloseIcon, MenuIcon, SocialIcon, type SocialNetwork } from "@/components/ui/icons";
+import { CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { mainNav, site } from "@/content/site";
 
 function isCurrent(pathname: string, href: string) {
@@ -31,11 +32,6 @@ export function Navbar() {
   const overlay = pathname === "/";
   const transparent = overlay && !pastHero;
   const [open, setOpen] = useState(false);
-
-  const socials = Object.entries(site.socials).filter(([, url]) => url) as [
-    SocialNetwork,
-    string,
-  ][];
 
   return (
     <header
@@ -90,20 +86,7 @@ export function Navbar() {
                 <ButtonLink href="/contact-us" variant="outline">
                   Schedule a consultation
                 </ButtonLink>
-                {socials.length > 0 && (
-                  <div className="mt-2 flex w-full items-center gap-2 border-t-[0.5px] border-oliv/20 pt-3 text-grey-200">
-                    {socials.map(([network, url]) => (
-                      <a
-                        key={network}
-                        href={url}
-                        aria-label={network}
-                        className="flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(201,241,161,0.08)] text-grey-50 transition-all duration-300 ease-out hover:bg-[rgba(201,241,161,0.16)] hover:text-white"
-                      >
-                        <SocialIcon network={network} />
-                      </a>
-                    ))}
-                  </div>
-                )}
+                <SocialLinks className="mt-2 w-full border-t-[0.5px] border-oliv/20 pt-3" />
               </div>
             </div>
           </nav>

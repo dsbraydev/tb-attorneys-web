@@ -21,6 +21,8 @@ export default defineConfig({
     command: `pnpm build && pnpm start --port ${port}`,
     url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
+    // No form delivery provider exists yet; simulate successful sends for the form tests.
+    env: { FORMS_DRY_RUN: "true" },
     timeout: 180_000,
   },
 });

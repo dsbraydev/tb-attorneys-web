@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 import { estimateTransferCosts, formatRand, transferDuty } from "@/lib/transfer-costs";
+import { Divider } from "@/components/ui/Divider";
 
 function parseRand(value: string) {
   const digits = value.replace(/[^\d]/g, "");
@@ -26,7 +27,7 @@ export function TransferCostCalculator() {
             Enter the purchase price to estimate the transfer duty payable to SARS.
           </p>
         </div>
-        <div className="h-0 w-full border-b border-[rgba(183,179,162,0.8)]" />
+        <Divider />
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <label htmlFor={`${id}-price`} className="body-regular text-ink-2">
@@ -37,8 +38,10 @@ export function TransferCostCalculator() {
               inputMode="numeric"
               autoComplete="off"
               placeholder="e.g. 2 500 000"
-              value={price ? new Intl.NumberFormat("en-ZA").format(price) : rawPrice}
+              value={rawPrice}
               onChange={(event) => setRawPrice(event.target.value)}
+              // Group the digits only once the user leaves the field, so the caret never jumps.
+              onBlur={() => setRawPrice(price ? new Intl.NumberFormat("en-ZA").format(price) : "")}
               className="h-14 w-full rounded-lg border border-oliv/[0.32] bg-page p-4 text-lg text-ink outline-none placeholder:font-light focus:border-gold"
             />
           </div>
@@ -65,7 +68,7 @@ export function TransferCostCalculator() {
               <span className="heading-4">{formatRand(estimate.total)}</span>
             </div>
           </div>
-          <div className="h-0 w-full border-b border-[rgba(183,179,162,0.8)]" />
+          <Divider />
           <dl className="flex flex-col gap-4">
             {estimate.lines.map((line) => (
               <div

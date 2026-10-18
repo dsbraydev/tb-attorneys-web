@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { site } from "@/content/site";
+import { Divider } from "@/components/ui/Divider";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -78,7 +79,7 @@ export default function ContactPage() {
               ))}
             </div>
           )}
-          <div className="mt-16 h-0 w-full border-b border-[rgba(183,179,162,0.8)] landscape:mt-10" />
+          <Divider className="mt-16 landscape:mt-10" />
         </div>
       </section>
       <FaqSection />

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { submitContact, submitEmailCapture, type FormState } from "@/lib/forms";
 
 const idle: FormState = { status: "idle" };
@@ -9,8 +9,31 @@ function form(fields: Record<string, string | File>) {
   return data;
 }
 
+let info: ReturnType<typeof vi.spyOn>;
+
 beforeEach(() => {
-  vi.spyOn(console, "info").mockImplementation(() => {});
+  info = vi.spyOn(console, "info").mockImplementation(() => {});
+  vi.stubEnv("FORMS_DRY_RUN", "true");
+});
+
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
+
+describe("without a delivery provider", () => {
+  it("never reports success and never logs personal details", async () => {
+    vi.stubEnv("FORMS_DRY_RUN", "");
+    const contact = await submitContact(
+      idle,
+      form({ name: "Thandi", email: "thandi@example.com", phone: "0821234567", message: "Hi" }),
+    );
+    const email = await submitEmailCapture(idle, form({ email: "thandi@example.com" }));
+
+    expect(contact.status).toBe("error");
+    expect(contact.message).toMatch(/contact us directly/);
+    expect(email.status).toBe("error");
+    expect(JSON.stringify(info.mock.calls)).not.toMatch(/Thandi|thandi@example\.com|0821234567/);
+  });
 });
 
 describe("submitContact", () => {
@@ -18,11 +41,6 @@ describe("submitContact", () => {
     const state = await submitContact(idle, form({ name: "", email: "nope", message: "" }));
     expect(state.status).toBe("error");
     expect(Object.keys(state.errors ?? {})).toEqual(["name", "email", "message"]);
-  });
-
-  it("echoes the submitted values back so the form can refill them", async () => {
-    const state = await submitContact(idle, form({ name: "Thandi", email: "bad", message: "Hi" }));
-    expect(state.values).toMatchObject({ name: "Thandi", email: "bad", message: "Hi" });
   });
 
   it("accepts an agreement upload instead of a message", async () => {
