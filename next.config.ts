@@ -1,7 +1,16 @@
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
+  experimental: {
+    serverActions: {
+      // Sale agreements are uploaded through the contact form (10 MB cap, plus multipart overhead).
+      bodySizeLimit: "11mb",
+    },
+  },
 };
 
-export default nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);
