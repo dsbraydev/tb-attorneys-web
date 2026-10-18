@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, type ReactNode } from "react";
+import { startTransition, useActionState, type FormEvent, type ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { submitContact, type FormState } from "@/lib/forms";
 
@@ -38,7 +38,14 @@ function Field({
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContact, initialState);
   const errors = state.errors ?? {};
-  const values = state.values ?? {};
+
+  // Submitting through onSubmit (rather than `action`) stops React resetting the form after an
+  // error, so typed values and the attached sale agreement are kept.
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    startTransition(() => formAction(formData));
+  }
 
   if (state.status === "success") {
     return (
@@ -54,13 +61,16 @@ export function ContactForm() {
   const describedBy = (name: string) => (errors[name] ? `contact-${name}-error` : undefined);
 
   return (
-    <form action={formAction} className="flex flex-col gap-5 landscape:gap-4 phone:gap-3" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-5 landscape:gap-4 phone:gap-3"
+      noValidate
+    >
       <div className="flex w-full items-start gap-4 landscape:flex-col phone:gap-3">
         <Field label="Name" name="name" error={errors.name}>
           <input
             id="contact-name"
             name="name"
-            defaultValue={values.name}
             type="text"
             autoComplete="name"
             required
@@ -74,7 +84,6 @@ export function ContactForm() {
           <input
             id="contact-email"
             name="email"
-            defaultValue={values.email}
             type="email"
             autoComplete="email"
             required
@@ -90,7 +99,6 @@ export function ContactForm() {
           <input
             id="contact-phone"
             name="phone"
-            defaultValue={values.phone}
             type="tel"
             autoComplete="tel"
             placeholder="082 123 4567"
@@ -113,7 +121,6 @@ export function ContactForm() {
         <textarea
           id="contact-message"
           name="message"
-          defaultValue={values.message}
           rows={5}
           placeholder="Tell us about your property transaction"
           aria-invalid={errors.message ? true : undefined}
@@ -121,6 +128,11 @@ export function ContactForm() {
           className={`${inputClass} h-auto min-h-[140px]`}
         />
       </Field>
+      {state.status === "error" && state.message && (
+        <p className="rounded-2xl bg-[rgba(255,211,213,0.49)] p-4 text-danger" role="alert">
+          {state.message}
+        </p>
+      )}
       <Button type="submit" disabled={pending} className="self-start phone:self-stretch">
         {pending ? "Sending…" : "Submit"}
       </Button>

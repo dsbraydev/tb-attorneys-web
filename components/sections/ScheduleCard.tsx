@@ -10,7 +10,7 @@ export function ScheduleCard() {
   const [state, formAction, pending] = useActionState(submitEmailCapture, initialState);
 
   return (
-    <div className="sticky top-[10%] flex w-full max-w-[480px] rounded-[30px] border border-oliv bg-[rgba(172,181,140,0.34)] p-8 tablet:mx-auto tablet:max-w-[80%] landscape:max-w-none phone:p-6">
+    <div className="sticky top-[10%] flex w-full max-w-[480px] rounded-[30px] border border-oliv bg-[rgba(172,181,140,0.34)] p-8 landscape:max-w-none tablet:mx-auto tablet:max-w-[80%] phone:p-6">
       <div className="flex w-full flex-col gap-4">
         <div className="flex flex-col gap-2">
           <h2 className="body-large font-sans">Schedule A Consultation</h2>
@@ -39,6 +39,11 @@ export function ScheduleCard() {
               aria-invalid={state.errors?.email ? true : undefined}
               className="h-14 w-full rounded-lg border border-oliv/[0.32] bg-page p-4 text-ink outline-none placeholder:font-light focus:border-gold"
             />
+            {state.status === "error" && state.message && (
+              <p className="rounded-2xl bg-[rgba(255,211,213,0.49)] p-3 text-danger" role="alert">
+                {state.message}
+              </p>
+            )}
             {state.errors?.email && (
               <p className="rounded-2xl bg-[rgba(255,211,213,0.49)] p-3 text-danger" role="alert">
                 {state.errors.email}

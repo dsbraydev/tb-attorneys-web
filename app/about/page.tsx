@@ -33,9 +33,9 @@ export default function AboutPage() {
           </>
         }
       />
-      <section className="relative h-[810px] tablet:h-[560px] landscape:h-[420px] phone:h-[380px]">
+      <section className="relative h-[810px] landscape:h-[420px] tablet:h-[560px] phone:h-[380px]">
         <Image
-          src="/images/about-hero.jpg"
+          src="/images/about-hero.webp"
           alt=""
           fill
           sizes="100vw"

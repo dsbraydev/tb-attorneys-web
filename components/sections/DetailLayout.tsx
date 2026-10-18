@@ -5,6 +5,7 @@ import { ScheduleCard } from "@/components/sections/ScheduleCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import type { InsightPost } from "@/content/insight";
+import { Divider } from "@/components/ui/Divider";
 
 // Shared by Insight articles and service pages, matching Webflow's CMS detail template.
 export function DetailLayout({
@@ -22,7 +23,7 @@ export function DetailLayout({
 }) {
   return (
     <>
-      <section className="pb-[var(--space-80)] pt-[var(--space-hero-top)]">
+      <section className="pt-[var(--space-hero-top)] pb-[var(--space-80)]">
         <div className="container-main">
           <div className="flex flex-col items-center gap-[var(--space-80)] text-center phone:gap-12">
             <Reveal className="flex flex-col items-center gap-6 landscape:gap-5 phone:gap-4">
@@ -66,7 +67,7 @@ export function DetailLayout({
       {related.length > 0 && (
         <section className="py-[var(--space-80)]">
           <div className="container-main">
-            <div className="mb-16 h-0 w-full border-b border-[rgba(183,179,162,0.8)] landscape:mb-10" />
+            <Divider className="mb-16 landscape:mb-10" />
             <div className="mb-[var(--space-80)] flex flex-col items-start gap-4">
               <SectionLabel>Tips from Tim</SectionLabel>
               <h2 className="heading-4">Latest</h2>

@@ -2,14 +2,16 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { ArrowRightIcon, ChevronIcon } from "@/components/ui/icons";
 
-type Variant = "primary" | "outline";
+type Variant = "primary" | "outline" | "gold";
 
 const base =
   "group/button inline-flex min-w-[180px] shrink-0 items-center justify-center gap-2 rounded-[3px] px-6 py-3.5 text-center capitalize transition-all duration-[350ms] tablet:py-4 landscape:px-4 landscape:py-3";
 
 const variants: Record<Variant, string> = {
   primary: "bg-navy text-white",
-  outline: "border border-navy bg-transparent text-grey-100",
+  outline: "border border-white/40 bg-transparent text-grey-100 hover:border-white/70",
+  // For dark backgrounds, where the navy primary button would disappear.
+  gold: "bg-gold text-navy",
 };
 
 // Webflow's button: a chevron that slides in from the left and a label that rolls up on hover.
@@ -17,7 +19,7 @@ function ButtonContent({ children }: { children: ReactNode }) {
   return (
     <>
       <span className="flex h-4 w-4 overflow-hidden" aria-hidden>
-        <span className="flex shrink-0 gap-1 transition-transform duration-300 ease-out -translate-x-5 group-hover/button:translate-x-0">
+        <span className="flex shrink-0 -translate-x-5 gap-1 transition-transform duration-300 ease-out group-hover/button:translate-x-0">
           <span className="flex h-4 w-4 items-center justify-center">
             <ChevronIcon />
           </span>

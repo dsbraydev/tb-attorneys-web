@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
-      <section className="pb-[var(--space-80)] pt-[var(--space-hero-top)]">
+      <section className="pt-[var(--space-hero-top)] pb-[var(--space-80)]">
         <div className="container-main">
           <div className="flex w-full flex-col gap-[var(--title-mb-small)]">
             <div className="mx-auto flex max-w-[660px] flex-col items-center gap-6 text-center">

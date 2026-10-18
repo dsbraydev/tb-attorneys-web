@@ -11,6 +11,27 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) to view it.
 
+## Scripts
+
+| Command                             | What it does                                                                                         |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `pnpm lint`                         | ESLint                                                                                               |
+| `pnpm typecheck`                    | Generates route types and runs `tsc --noEmit`                                                        |
+| `pnpm format` / `pnpm format:check` | Prettier, including Tailwind class sorting (MDX files are excluded: Prettier corrupts MDX 3)         |
+| `pnpm test`                         | Vitest unit tests (`lib/**/*.test.ts`)                                                               |
+| `pnpm test:e2e`                     | Playwright smoke tests against a production build (run `pnpm exec playwright install chromium` once) |
+
+CI (`.github/workflows/ci.yml`) runs all of these on every pull request, plus a Lighthouse budget (`lighthouserc.json`) on `/` and `/pricing`.
+
+## Images and video
+
+Keep source images at most 2400px on the long edge and in WebP/AVIF. `next/image` resizes them per device, but large sources bloat the repo. The hero video should stay at about 1MB (720p, no audio). Example commands:
+
+```bash
+magick input.jpg -resize "2400x2400>" -strip -quality 78 public/images/output.webp
+ffmpeg -i input.mp4 -an -vf scale=1280:-2 -c:v libx264 -preset slow -crf 30 -movflags +faststart public/video/hero.mp4
+```
+
 ## Where things live
 
 - `app/`: routes (Home, About, Services, Insight, Transfer Cost Calculator at `/pricing`, Contact, FAQ, Privacy Policy). Keep them thin.

@@ -1,9 +1,21 @@
 export type NavLink = { label: string; href: string };
 
+// Used for metadataBase, sitemap.xml and robots.txt, which are baked into the static build.
+// TODO(content): set NEXT_PUBLIC_SITE_URL to the production domain once it is chosen.
+function siteUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  // A production deploy must not fall back to a guessed URL.
+  if (process.env.VERCEL_ENV === "production") {
+    throw new Error("Set NEXT_PUBLIC_SITE_URL to the production domain before deploying.");
+  }
+  // Vercel previews get their own URL; everything else (local, CI) uses localhost.
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}
+
 export const site = {
   name: "Tim Boshoff Inc",
-  // TODO(content): set NEXT_PUBLIC_SITE_URL to the production domain once it is chosen.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: siteUrl(),
   description:
     "Property transfer attorneys. Before you sign, get your sale agreement reviewed by a property attorney. We protect your interests, guide you through the legal process, and manage the transfer with clarity and care.",
   // TODO(content): Tim's real contact details. Contact cards and footer links are hidden while these are empty.

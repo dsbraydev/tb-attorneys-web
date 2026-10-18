@@ -316,6 +316,15 @@
   }
 }
 
+/* Marquees only animate while on screen (see RevealObserver). */
+[data-marquee] > * {
+  animation-play-state: paused;
+}
+
+[data-marquee][data-active="true"] > * {
+  animation-play-state: running;
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

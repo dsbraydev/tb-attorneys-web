@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 import { estimateTransferCosts, formatRand, transferDuty } from "@/lib/transfer-costs";
+import { Divider } from "@/components/ui/Divider";
 
 function parseRand(value: string) {
   const digits = value.replace(/[^\d]/g, "");
@@ -26,7 +27,7 @@ export function TransferCostCalculator() {
             Enter the purchase price to estimate the transfer duty payable to SARS.
           </p>
         </div>
-        <div className="h-0 w-full border-b border-[rgba(183,179,162,0.8)]" />
+        <Divider />
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <label htmlFor={`${id}-price`} className="body-regular text-ink-2">
@@ -37,8 +38,10 @@ export function TransferCostCalculator() {
               inputMode="numeric"
               autoComplete="off"
               placeholder="e.g. 2 500 000"
-              value={price ? new Intl.NumberFormat("en-ZA").format(price) : rawPrice}
+              value={rawPrice}
               onChange={(event) => setRawPrice(event.target.value)}
+              // Group the digits only once the user leaves the field, so the caret never jumps.
+              onBlur={() => setRawPrice(price ? new Intl.NumberFormat("en-ZA").format(price) : "")}
               className="h-14 w-full rounded-lg border border-oliv/[0.32] bg-page p-4 text-lg text-ink outline-none placeholder:font-light focus:border-gold"
             />
           </div>
@@ -65,15 +68,16 @@ export function TransferCostCalculator() {
               <span className="heading-4">{formatRand(estimate.total)}</span>
             </div>
           </div>
-          <div className="h-0 w-full border-b border-[rgba(183,179,162,0.8)]" />
+          <Divider />
           <dl className="flex flex-col gap-4">
             {estimate.lines.map((line) => (
-              <div key={line.label} className="flex flex-col gap-1">
-                <div className="flex items-center justify-between gap-4">
-                  <dt className="body-regular text-ink-2">{line.label}</dt>
-                  <dd className="body-regular font-medium text-ink">{formatRand(line.amount)}</dd>
-                </div>
-                {line.note && <p className="body-small text-grey-500">{line.note}</p>}
+              <div
+                key={line.label}
+                className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1"
+              >
+                <dt className="body-regular text-ink-2">{line.label}</dt>
+                <dd className="body-regular font-medium text-ink">{formatRand(line.amount)}</dd>
+                {line.note && <dd className="col-span-2 body-small text-grey-500">{line.note}</dd>}
               </div>
             ))}
           </dl>
